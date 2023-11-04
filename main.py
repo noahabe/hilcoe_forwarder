@@ -3,7 +3,7 @@ import asyncio
 import telegram 
 
 from telegram import Update
-from telegram.ext import ApplicationBuilder, ContextTypes, MessageHandler, filters
+from telegram.ext import ApplicationBuilder, ContextTypes, MessageHandler, filters, CommandHandler
 
 import functools 
 import os 
@@ -73,11 +73,18 @@ async def forward_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             msg = await update.message.forward(single_dest_group)
             await context.bot.send_message(text=src_message_link, chat_id=single_dest_group, reply_to_message_id=msg.message_id)
 
+async def get_id_handler(update: Update, context: ContextTypes.DEFAULT_TYPE): 
+    id = update.effective_chat.id
+    await update.message.reply_text(f"ID: `{id}` (For Dev purpose only.)")
+
 if __name__ == '__main__': 
     application = ApplicationBuilder().token(get_config_file().api_key).build() 
 
     message_handler = MessageHandler(filters.ALL, forward_handler)  
+    id_handler = CommandHandler('id', get_id_handler)
+
     application.add_handler(message_handler) 
+    application.add_handler(id_handler)
 
     PORT = int(os.environ.get('PORT', '8443'))
 
