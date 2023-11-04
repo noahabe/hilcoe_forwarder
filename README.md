@@ -18,3 +18,24 @@ if he/she sees fit.
 Feel free to reach out to me: https://t.me/data53 or create an issue. 
 
 Pull requests are also appreciated. 
+
+## Want to use the bot for your own groups? 
+
+Step 1: Talk to BotFather to create a telegram bot: https://t.me/BotFather
+
+Step 2: Create your own `config.json` file: 
+
+```
+{ 
+    "api_key": "get-this-from-bot-father", 
+    "source_groups": [
+        "group-username-1", 
+        "group-username-2"
+    ], 
+    "destination_groups": [ 
+        chat-id-must-be-in-integer-form
+    ], 
+    "secret_token": "randomly-generate-a-token-and-place-it-here", 
+    "webhook_url": "https://example.org"
+}
+```
