@@ -83,8 +83,8 @@ if __name__ == '__main__':
     message_handler = MessageHandler(filters.ALL, forward_handler)  
     id_handler = CommandHandler('id', get_id_handler)
 
-    application.add_handler(message_handler) 
     application.add_handler(id_handler)
+    application.add_handler(message_handler) 
 
     PORT = int(os.environ.get('PORT', '8443'))
 
