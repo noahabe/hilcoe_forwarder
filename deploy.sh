@@ -1,1 +1,1 @@
-gcloud run deploy --source . --region us-central1
+gcloud run deploy --source . --region us-central1 --min-instances 0
